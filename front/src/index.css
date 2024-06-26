@@ -1,0 +1,87 @@
+:root {
+    --light-green: #4cd137;
+    --dark-green: #379728;
+    --light-blue: #00a8ff;
+    --light-blue-1: #0097e6;
+    --dark-blue: #273c75;
+    --dark-blue-1: #192a56;
+    --light-red: #e84118;
+    --dark-red: #c23616;
+    --light: #f5f6fa;
+    --silver: #dcdde1;
+    --dark: #2f3640;
+}
+
+body {
+    margin: 0;
+    direction: rtl;
+}
+
+* {
+    font-family: 'IranYekan';
+    text-decoration: none;
+    list-style: none;
+}
+
+#header {
+    position: relative;
+    height: 50px;
+}
+
+#header .nav-link {
+    color: var(--light);
+    font-size: 14px;
+    transition: .2s ease-in;
+    -o-transition: .2s ease-in;
+    -ms-transition: .2s ease-in;
+    -webkit-transition: .2s ease-in;
+}
+
+#header .nav-link:hover {
+    color: var(--silver);
+    transition: .2s ease-in;
+    -o-transition: .2s ease-in;
+    -ms-transition: .2s ease-in;
+    -webkit-transition: .2s ease-in;
+}
+
+#header .nav-link.active {
+    color: var(--light-green);
+    transition: .2s ease-in;
+    -o-transition: .2s ease-in;
+    -ms-transition: .2s ease-in;
+    -webkit-transition: .2s ease-in;
+}
+
+#header .logo {
+    height: 36px;
+}
+
+#header .logo img {
+    height: 100%;
+}
+
+#header .welcome {
+    font-size: 13px;
+    color: var(--light);
+}
+
+#header .logout:hover {
+    color: var(--light-red);
+    transition: .2s ease-in;
+    -o-transition: .2s ease-in;
+    -ms-transition: .2s ease-in;
+    -webkit-transition: .2s ease-in;
+}
+
+#header::after {
+    content: '';
+    width: 100vw;
+    height: 100px;
+    right: 0;
+    top: 100%;
+    background: url('../public/img/navbar.svg') no-repeat transparent;
+    background-position: top center;
+    background-size: cover;
+    position: absolute;
+}
