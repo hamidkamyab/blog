@@ -2,7 +2,21 @@
 
 function Home() {
   return (
-    <div>Home</div>
+    <div className='bg-danger'>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      Home
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+    </div>
   )
 }
 

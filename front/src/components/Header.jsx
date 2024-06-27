@@ -3,7 +3,7 @@ import * as IO5 from 'react-icons/io5'
 import { NavLink } from 'react-router-dom'
 function Header() {
   return (
-    <div id='header' className='w-100 navbar navbar-dark bg-dark'>
+    <div id='header' className='w-100 navbar navbar-dark bg-dark mb-5'>
       <div className="container d-flex justify-content-between align-items-center">
         <nav className="right">
           <ul className='navbar-nav d-flex align-items-center flex-row gap-3 list-unstyled m-0 p-0' >
@@ -44,8 +44,6 @@ function Header() {
           </div>
         </div>
       </div>
-      
-      <div className='position-absolute navbar-svg' ></div>
     </div>
   )
 }

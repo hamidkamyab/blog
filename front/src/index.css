@@ -10,6 +10,8 @@
     --light: #f5f6fa;
     --silver: #dcdde1;
     --dark: #2f3640;
+    --grey: #718093;
+    --yellow: #fbc531;
 }
 
 body {
@@ -21,6 +23,7 @@ body {
     font-family: 'IranYekan';
     text-decoration: none;
     list-style: none;
+    box-sizing: border-box;
 }
 
 #header {
@@ -76,7 +79,7 @@ body {
 
 #header::after {
     content: '';
-    width: 100vw;
+    width: 100%;
     height: 100px;
     right: 0;
     top: 100%;
@@ -84,4 +87,66 @@ body {
     background-position: top center;
     background-size: cover;
     position: absolute;
+}
+
+.form-box {
+    width: 320px;
+}
+
+.form-box .form-group label {
+    color: var(--light);
+    font-size: 13px;
+    padding: 0;
+    margin: 0;
+}
+
+.form-box .form-group input {
+    font-size: 13px;
+}
+
+.form-box .title {
+    border-color: var(--grey) !important;
+    color: var(--light);
+}
+
+.svg-page {
+    width: 75%;
+}
+
+input:focus {
+    border: none;
+    outline: none;
+    box-shadow: 0 0 1px 3px var(--dark-green) !important;
+}
+
+@media (min-width:768px) {
+    .form-box {
+        position: relative;
+        overflow: hidden;
+    }
+    .form-box * {
+        z-index: 7;
+    }
+    .form-box::after {
+        content: '';
+        position: absolute;
+        background: linear-gradient(180deg, var(--light-blue) 0%, var(--light-green) 30%, var(--yellow) 60%, var(--light-red) 90%);
+        height: 110%;
+        width: 340px;
+        border-radius: 100%;
+        left: -75%;
+        top: -5%;
+        z-index: 5;
+    }
+    .form-box::before {
+        content: '';
+        position: absolute;
+        background-color: rgba(31, 37, 40, 1);
+        height: 110%;
+        width: 338px;
+        border-radius: 100%;
+        left: -75%;
+        top: -5%;
+        z-index: 6;
+    }
 }
