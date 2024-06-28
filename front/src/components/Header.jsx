@@ -40,7 +40,7 @@ function Header() {
           </div>
           <div className="vr bg-white opacity-75" style={{ width: '1px' }}></div>
           <div className="logo">
-            <img src="./img/logo.png" alt="" srcset="" />
+            <img src="./img/logo.png" alt="" />
           </div>
         </div>
       </div>

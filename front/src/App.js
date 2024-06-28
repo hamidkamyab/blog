@@ -5,7 +5,10 @@ import Register from './page/register/Register'
 
 import Header from './components/Header'
 import Footer from './components/Footer'
+import axios from 'axios'
 
+axios.defaults.withCredentials = true;
+axios.defaults.withXSRFToken=true;
 function App() {
   return (
     <div className="App vh-100 d-flex flex-wrap align-items-start justify-content-center">

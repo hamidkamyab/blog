@@ -30,7 +30,7 @@ class AuthController extends Controller
             $token = $user->createToken($user->email.'_Token')->plainTextToken;
             return response()->json([
                 'status'=>200,
-                'username'=>$user->name,
+                'name'=>$user->name,
                 'user_id'=>$user->id,
                 'token'=>$token,
                 'message'=> 'ٍثبت نام شما با موفقیت انجام شد.'
@@ -67,7 +67,7 @@ class AuthController extends Controller
                 }
                 return response()->json([
                     'status'=>200,
-                    'username'=>$user->name,
+                    'name'=>$user->name,
                     'user_id'=>$user->id,
                     'token'=>$token,
                     'message'=> 'ٍورود با موفقیت انجام شد.',
