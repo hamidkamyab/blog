@@ -124,10 +124,15 @@ input:focus {
     box-shadow: 0 0 1px 3px var(--dark-green) !important;
 }
 
-input.password:focus,
-input.pass-ltr {
+#register input.password:focus,
+#register input.pass-ltr,
+#login input.password {
     direction: ltr;
     text-align: ltr;
+}
+
+#swal2-title {
+    font-size: 18px;
 }
 
 @media (min-width:768px) {
