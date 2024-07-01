@@ -2,7 +2,8 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
-
+import routes from '../../routes';
+import Cookie from 'js-cookie';
 
 function Login() {
 
@@ -13,18 +14,20 @@ function Login() {
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        await axios.post('http://127.0.0.1:8000/api/login', {
+        await axios.post('login', {
             email,
             password
-        },{
-            headers:{
-                "Content-Type":'Application/json',
-                "Accept":'Application/json'
-            }
         })
             .then(function (response) {
                 if(response.data.status == 200){
-                  navigate('/')
+                 
+                  Cookie.set('name', response.data.name, { expires: 1 })
+                  Cookie.set('id', response.data.user_id, { expires: 1 })
+                  Cookie.set('token', response.data.token, { expires: 1 })
+
+                  window.dispatchEvent(new Event('storage'));
+
+                  navigate(routes.home)
                 }else if(response.data.status == 401){
                   Swal.fire({
                     icon:'warning',

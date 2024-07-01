@@ -1,14 +1,16 @@
 ﻿import React, { useState } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
+import routes from '../../routes';
+import Cookie from 'js-cookie';
 
 function Register() {
-
+    const Navigate = useNavigate();
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState('')
-
     const [passPlaceholder, setpassPlaceholder] = useState("حداقل 8 کاراکتر(حروف،عدد و کاراکتر خاص)");
     const [passwordClass, setPasswordClass] = useState('');
     const handleBlurPassword = (e) => {
@@ -22,25 +24,35 @@ function Register() {
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        await axios.post('http://127.0.0.1:8000/api/register', {
+        await axios.post('register', {
             name,
             email,
             password
-        },{
-            headers:{
-                "Content-Type":'Application/json',
-                "Accept":'Application/json'
-            }
         })
             .then(function (response) {
                 if(response.data.status == 200){
                     Swal.fire({
                         icon:'success',
-                        title:'عملیات موفقیت آمیز بود',
-                        text:`${response.data.name} عزیز ثبت نام شما با موفقیت انجام شد`,
-                        confirmButtonText:'متوجه شدم'
-    
+                        title:`${response.data.name} عزیز ثبت نام شما با موفقیت انجام شد`,
+                        confirmButtonText:'متوجه شدم',
+                        confirmButtonColor:'#8c7ae6',
+                        timer: 3000,
+                        didOpen: () => {
+                            const timer = Swal.getPopup().querySelector("#swal2-html-container");
+                            let timerInterval = setInterval(() => {
+                              timer.textContent = `${Math.round(Swal.getTimerLeft()/1000)} ثانیه تا انتقال به پروفایل`;
+                            }, 100);
+                        },
                     })
+
+                    Cookie.set('name', response.data.name, { expires: 1 })
+                    Cookie.set('id', response.data.user_id, { expires: 1 })
+                    Cookie.set('token', response.data.token, { expires: 1 })
+                    window.dispatchEvent(new Event('storage'));
+
+                    setTimeout(() => {
+                        Navigate(routes.home)
+                    }, 3500);
                     
                 }else{
                     setErrors(response.data.validation_errors)
@@ -51,8 +63,8 @@ function Register() {
                     icon:'error',
                     title:'عملیات با خطا مواجه شد',
                     text:'ارتباط با سرور با خطا مواجه شده، لطفا مجددا تلاش کنید.',
-                    confirmButtonText:'متوجه شدم'
-
+                    confirmButtonText:'متوجه شدم',
+                    confirmButtonColor:'#8c7ae6',
                 })
             });
     }
