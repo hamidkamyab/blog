@@ -46,7 +46,7 @@ function Register() {
                     })
 
                     Cookie.set('name', response.data.name, { expires: 1 })
-                    Cookie.set('id', response.data.user_id, { expires: 1 })
+                    Cookie.set('user_id', response.data.user_id, { expires: 1 })
                     Cookie.set('token', response.data.token, { expires: 1 })
                     window.dispatchEvent(new Event('storage'));
 

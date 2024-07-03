@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react'
 import * as IO5 from 'react-icons/io5'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import routes from '../routes'
 import Cookie from 'js-cookie'
 import Swal from 'sweetalert2'
@@ -8,23 +8,24 @@ import Swal from 'sweetalert2'
 function Header() {
   const [name, setName] = useState(Cookie.get('name'))
   const [token, setToken] = useState(Cookie.get('token'))
-
+  const Navigate = useNavigate()
   const handleExit = () => {
     Swal.fire({
       icon: 'question',
       title: 'آیا قصد خروج از حساب خود را دارید؟',
       showCancelButton: true,
       confirmButtonText: "بله!",
-      confirmButtonColor:'#0097e6',
+      confirmButtonColor: '#0097e6',
       cancelButtonText: 'خیر',
-      cancelButtonColor:'#e84118'
+      cancelButtonColor: '#e84118'
     }).then((result) => {
       if (result.isConfirmed) {
         Cookie.remove('name')
         Cookie.remove('token')
-        Cookie.remove('id')
+        Cookie.remove('user_id')
         setName(null)
         setToken(null)
+        Navigate(routes.home)
       }
     })
   }
@@ -56,28 +57,32 @@ function Header() {
               </NavLink>
             </li>
 
-            <li className="nav-item">
-              <NavLink to={routes.blog} className="nav-link d-flex align-items-center gap-1">
-                <IO5.IoAddCircle size={16} />
-                <span>پست جدید</span>
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink to={routes.comments} className="nav-link d-flex align-items-center gap-1">
-                <IO5.IoChatboxEllipses size={16} />
-                <span >دیدگاه ها</span>
-              </NavLink>
-            </li>
-
             {
               token ?
-                (<li className="nav-item" onClick={handleExit}>
-                  <span className="nav-link logout d-flex align-items-center gap-1" role='button'>
-                    <IO5.IoLogOut size={18} />
-                    <span>خروج</span>
-                  </span>
-                </li>)
+                (
+                  <>
+                    <li className="nav-item">
+                      <NavLink to={routes.blog} className="nav-link d-flex align-items-center gap-1">
+                        <IO5.IoAddCircle size={16} />
+                        <span>پست جدید</span>
+                      </NavLink>
+                    </li>
+
+                    <li className="nav-item">
+                      <NavLink to={routes.comments} className="nav-link d-flex align-items-center gap-1">
+                        <IO5.IoChatboxEllipses size={16} />
+                        <span >دیدگاه ها</span>
+                      </NavLink>
+                    </li>
+                    <li className="nav-item" onClick={handleExit}>
+                      <span className="nav-link logout d-flex align-items-center gap-1" role='button'>
+                        <IO5.IoLogOut size={18} />
+                        <span>خروج</span>
+                      </span>
+                    </li>
+                  </>
+
+                )
                 :
                 (<>
                   <li className="nav-item">
