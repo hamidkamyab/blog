@@ -1,12 +1,15 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './page/home/Home'
-import Login from './page/login/Login'
-import Register from './page/register/Register'
 
 import Header from './components/Header'
 import Footer from './components/Footer'
 import axios from 'axios'
 import routes from './routes'
+
+import Home from './page/home/Home'
+import Login from './page/login/Login'
+import Register from './page/register/Register'
+import Blog from './page/blog/Blog'
+
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken=true;
@@ -24,6 +27,7 @@ function App() {
             <Route path={routes.home} element={<Home />} />
             <Route path={routes.login} element={<Login />} />
             <Route path={routes.register} element={<Register />} />
+            <Route path={routes.blog} element={<Blog />} />
           </Routes>
         </div>
       </BrowserRouter>

@@ -89,7 +89,7 @@ body {
     position: absolute;
 }
 
-.form-box {
+.form-box:not(.no-w) {
     width: 320px;
 }
 
@@ -148,9 +148,9 @@ input:focus {
         position: absolute;
         background: linear-gradient(180deg, var(--light-blue) 0%, var(--light-green) 30%, var(--yellow) 60%, var(--light-red) 90%);
         height: 110%;
-        width: 340px;
+        width: 75%;
         border-radius: 100%;
-        left: -75%;
+        left: -50%;
         top: -5%;
         z-index: 5;
     }
@@ -159,9 +159,9 @@ input:focus {
         position: absolute;
         background-color: rgba(31, 37, 40, 1);
         height: 110%;
-        width: 338px;
+        width: 74.5%;
         border-radius: 100%;
-        left: -75%;
+        left: -50%;
         top: -5%;
         z-index: 6;
     }

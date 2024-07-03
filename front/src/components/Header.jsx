@@ -55,11 +55,26 @@ function Header() {
                 <span className='pt-1'>خانه</span>
               </NavLink>
             </li>
+
+            <li className="nav-item">
+              <NavLink to={routes.blog} className="nav-link d-flex align-items-center gap-1">
+                <IO5.IoAddCircle size={16} />
+                <span>پست جدید</span>
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink to={routes.comments} className="nav-link d-flex align-items-center gap-1">
+                <IO5.IoChatboxEllipses size={16} />
+                <span >دیدگاه ها</span>
+              </NavLink>
+            </li>
+
             {
               token ?
                 (<li className="nav-item" onClick={handleExit}>
                   <span className="nav-link logout d-flex align-items-center gap-1" role='button'>
-                    <IO5.IoLogOut size={16} />
+                    <IO5.IoLogOut size={18} />
                     <span>خروج</span>
                   </span>
                 </li>)
