@@ -2,11 +2,13 @@
 import Cookie from 'js-cookie'
 import React, { useState } from 'react'
 import * as IO5 from 'react-icons/io5'
+import Swal from 'sweetalert2'
 function Blog() {
     const [previewImg, setPreviewImg] = useState('')
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [image, setImage] = useState('')
+    const [errors, setErrors] = useState({})
 
     const handlePreviewImg = (e) => {
         setImage(e.target.files[0])
@@ -18,13 +20,38 @@ function Blog() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
         const formData = new FormData();
         formData.append('title',title)
         formData.append('description',description)
         formData.append('image',image)
         formData.append('user_id',Cookie.get('user_id'))
+
         await axios.post('blog',formData)
-        .then(res=>console.log(res))
+        .then((response)=>{
+            if(response.data.status == 200){
+                Swal.fire({
+                    icon:'success',
+                    title:response.data.message,
+                    confirmButtonText:'متوجه شدم'
+                })
+                document.querySelectorAll('.form-control').forEach((item)=>{
+                    item.value=''
+                })
+                setPreviewImg(null)
+            }else{
+                setErrors(response.data.errors)
+            }
+        })
+        .catch(()=>{
+            Swal.fire({
+                icon:'error',
+                title:'عملیات با خطا مواجه شد',
+                text:'ارتباط با سرور با خطا مواجه شده، لطفا مجددا تلاش کنید.',
+                confirmButtonText:'متوجه شدم'
+
+            })
+        })
     }
 
     return (
@@ -37,19 +64,19 @@ function Blog() {
                     <div className="form-group">
                         <label className="form-label">عنوان مطلب</label>
                         <input type="text" name='title' className="form-control form-control-sm" onChange={(e)=>setTitle(e.target.value)} />
-                        {/* <small className='form-msg'>{errors.title}</small> */}
+                        <small className='form-msg'>{errors.title}</small>
                     </div>
                     <div className="form-group">
                         <label className="form-label">تصویر مطلب</label>
                         <input type="file" name='image' className="form-control form-control-sm" onChange={handlePreviewImg} />
-                        {/* <small className='form-msg'>{errors.email}</small> */}
+                        <small className='form-msg'>{errors.image}</small>
                     </div>
                     <div className="form-group">
                         <label className="form-label">متن</label>
+                        <small className='form-msg ms-2'>{errors.description}</small>
                         <div className="d-flex">
                             <div className="text pe-1 col-6">
-                                {/* <small className='form-msg'>{errors.password}</small> */}
-                                <textarea name='description' className={`password form-control form-control-sm`} rows={8} onChange={(e)=>setDescription(e.target.value)} ></textarea>
+                                <textarea name='description' className="form-control form-control-sm" rows={8} onChange={(e)=>setDescription(e.target.value)} ></textarea>
                             </div>
                             <div className="pic px-1 col-6 d-flex justify-content-center align-items-center border border-1 border-secondary bg-light">
                                 {

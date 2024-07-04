@@ -9,11 +9,11 @@ import Home from './page/home/Home'
 import Login from './page/login/Login'
 import Register from './page/register/Register'
 import Blog from './page/blog/Blog'
-
+import SingleBlog from './page/single-blog/SingleBlog'
 
 axios.defaults.withCredentials = true;
-axios.defaults.withXSRFToken=true;
-axios.defaults.baseURL="http://127.0.0.1:8000/api/";
+axios.defaults.withXSRFToken = true;
+axios.defaults.baseURL = "http://127.0.0.1:8000/api/";
 axios.defaults.headers.post['Content-Type'] = "Application/json";
 axios.defaults.headers.post['Accept'] = "Application/json";
 
@@ -21,14 +21,17 @@ function App() {
   return (
     <div className="App vh-100 d-flex flex-wrap align-items-start justify-content-center">
       <BrowserRouter>
-        <Header />
-        <div className="main vw-100">
-          <Routes>
-            <Route path={routes.home} element={<Home />} />
-            <Route path={routes.login} element={<Login />} />
-            <Route path={routes.register} element={<Register />} />
-            <Route path={routes.blog} element={<Blog />} />
-          </Routes>
+        <div className="d-flex flex-wrap align-items-start justify-content-center w-100">
+          <Header />
+          <div className="main w-100">
+            <Routes>
+              <Route path={routes.home} element={<Home />} />
+              <Route path={routes.login} element={<Login />} />
+              <Route path={routes.register} element={<Register />} />
+              <Route path={routes.blog} element={<Blog />} />
+              <Route path={`${routes.singleBlog}/:id`} element={<SingleBlog />} />
+            </Routes>
+          </div>
         </div>
       </BrowserRouter>
       <Footer />

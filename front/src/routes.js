@@ -3,7 +3,8 @@
     login: '/login',
     register: '/register',
     blog: '/blog',
-    comments: '/comments'
+    comments: '/comments',
+    singleBlog: '/single-blog/'
 };
 
 export default routes;

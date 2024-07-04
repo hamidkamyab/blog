@@ -9,6 +9,7 @@
     --dark-red: #c23616;
     --light: #f5f6fa;
     --silver: #dcdde1;
+    --silver-2: #cacaca;
     --dark: #2f3640;
     --grey: #718093;
     --yellow: #fbc531;
@@ -29,6 +30,7 @@ body {
 #header {
     position: relative;
     height: 50px;
+    margin-bottom: 60px;
 }
 
 #header .nav-link {
@@ -138,6 +140,59 @@ input:focus {
 #blog textarea {
     min-height: 200px;
     max-height: 320px;
+}
+
+#home .home-header h4 {
+    color: var(--dark-green);
+    position: relative;
+}
+
+#home .home-header h4::after,
+#home .home-header h4::before {
+    content: '';
+    width: 64px;
+    height: 2px;
+    background-color: var(--dark-green);
+    display: block;
+    position: absolute;
+}
+
+#home .home-header h4::after {
+    right: -76px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#home .home-header h4::before {
+    left: -76px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.blog-item .blog-box {
+    border-color: var(--silver-2) !important;
+    box-shadow: 0 0 4px 1px var(--silver-2);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.blog-item .blog-description {
+    font-size: 14px;
+}
+
+.blog-item .blog-title {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.blog-item .details small {
+    font-size: 12px;
+}
+
+.blog-item .imageBlog img {
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
 }
 
 @media (min-width:768px) {

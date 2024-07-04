@@ -28,8 +28,8 @@ class BlogController extends Controller
 
         $validator = Validator::make($request->all(),[
 
-            'title'=>'required|max:200',
-            'description'=>'required|max:2000',
+            'title'=>'required|min:4|max:200',
+            'description'=>'required|min:10|max:2000',
             'image'=>'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
