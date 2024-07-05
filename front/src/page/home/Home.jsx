@@ -1,11 +1,11 @@
 ﻿import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import Swal from 'sweetalert2';
 import * as IO5 from 'react-icons/io5'
 import * as FI from "react-icons/fi";
 import { Link } from 'react-router-dom';
 import routes from '../../routes';
-import moment from "moment-jalaali";
+import homeSVG from '../../assets/img/home.svg'
+import { ad_to_jalali } from '../../helper';
 
 function Home() {
   const [blogs, setBlogs] = useState([])
@@ -28,15 +28,6 @@ function Home() {
       })
   }
 
-  const convertDate = (hour, mDate) => {
-    if (hour) {
-      return moment(mDate, 'YYYY-MM-DD HH:mm:ss').format('HH:mm:ss jYYYY/jMM/jDD')
-    } else {
-      return moment(mDate, 'YYYY-MM-DD HH:mm:ss').format('jYYYY/jMM/jDD')
-    }
-
-  }
-
   useEffect(() => {
     return () => {
       getBlogs()
@@ -46,7 +37,7 @@ function Home() {
   return (
     <div id="home" className='align-self-start'>
       <div className="home-header d-flex flex-column align-items-center gap-3">
-        <img src="./img/home.svg" alt="" />
+        <img src={homeSVG} alt="" />
         <h4 className='text-center'>از همه جا با ما باش</h4>
       </div>
 
@@ -102,7 +93,7 @@ function Home() {
                           <div className='d-flex align-items-center gap-1'>
                             <IO5.IoCalendar size={12} className='icon' />
                             <small>تاریخ:</small>
-                            <small className='text-muted' title={convertDate(true, blog.created_at)}>{convertDate(false, blog.created_at)}</small>
+                            <small className='text-muted' title={ad_to_jalali(true, blog.created_at)}>{ad_to_jalali( blog.created_at)}</small>
                           </div>
                         </div>
                       </div>
@@ -117,9 +108,9 @@ function Home() {
               ))
             :
             <div className="loading d-flex flex-column w-100 gap-2 align-items-center py-4">
-              <div class="spinner-grow text-primary" role="status">
+              <div className="spinner-grow text-primary" role="status">
               </div>
-              <span>در حال دریافت اطلاعات</span>
+              <span>در حال دریافت اطلاعات، لطفا منتظر بمانید</span>
             </div>
 
 

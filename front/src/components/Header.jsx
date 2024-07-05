@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import routes from '../routes'
 import Cookie from 'js-cookie'
 import Swal from 'sweetalert2'
+import logo from '../assets/img/logo.png'
 
 function Header() {
   const [name, setName] = useState(Cookie.get('name'))
@@ -117,7 +118,7 @@ function Header() {
 
 
           <div className="logo">
-            <img src="./img/logo.png" alt="" />
+            <img src={logo} alt="" />
           </div>
         </div>
       </div>

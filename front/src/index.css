@@ -85,7 +85,7 @@ body {
     height: 100px;
     right: 0;
     top: 100%;
-    background: url('../public/img/navbar.svg') no-repeat transparent;
+    background: url('./assets/img/navbar.svg') no-repeat transparent;
     background-position: top center;
     background-size: cover;
     position: absolute;
@@ -181,8 +181,8 @@ input:focus {
 }
 
 .blog-item .blog-title {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 15px;
+    color: var(--dark-green);
 }
 
 .blog-item .details small {
@@ -208,6 +208,29 @@ input:focus {
     width: 68px;
     height: 68px;
     margin-bottom: 8px;
+}
+
+#single-blog .blogBox {
+    box-shadow: 0 0 8px 2px var(--silver-2);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#single-blog .imageBlog img {
+    width: 100%;
+    max-height: 460px;
+    object-fit: cover;
+}
+
+#single-blog .title h5 {
+    color: var(--dark-blue);
+    font-size: 18px;
+}
+
+#single-blog .description p {
+    text-align: justify;
+    font-size: 14px;
+    line-height: 28px;
 }
 
 @media (min-width:768px) {

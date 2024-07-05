@@ -4,7 +4,7 @@
     register: '/register',
     blog: '/blog',
     comments: '/comments',
-    singleBlog: '/single-blog/'
+    singleBlog: "/single-blog/"
 };
 
 export default routes;

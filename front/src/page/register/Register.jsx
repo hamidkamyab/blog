@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
 import routes from '../../routes';
 import Cookie from 'js-cookie';
-
+import registerSVG from '../../assets/img/register.svg'
 function Register() {
     const Navigate = useNavigate();
     const [name, setName] = useState('')
@@ -101,7 +101,7 @@ function Register() {
                 </div>
             </div>
             <div className="left px-2 col-6 d-flex justify-content-end">
-                <img src="./img/register.svg" alt="" className="svg-page" />
+                <img src={registerSVG} alt="" className="svg-page" />
             </div>
         </div>
     )

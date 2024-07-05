@@ -29,7 +29,7 @@ function App() {
               <Route path={routes.login} element={<Login />} />
               <Route path={routes.register} element={<Register />} />
               <Route path={routes.blog} element={<Blog />} />
-              <Route path={`${routes.singleBlog}/:id`} element={<SingleBlog />} />
+              <Route path={routes.singleBlog+':id'} element={<SingleBlog />} />
             </Routes>
           </div>
         </div>

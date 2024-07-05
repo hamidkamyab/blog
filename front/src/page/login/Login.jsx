@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
 import routes from '../../routes';
 import Cookie from 'js-cookie';
-
+import loginSVG from '../../assets/img/login.svg'
 function Login() {
 
     const navigate = useNavigate();
@@ -77,7 +77,7 @@ function Login() {
                 </div>
             </div>
             <div className="left px-2 col-6 d-flex justify-content-end">
-                <img src="./img/login.svg" alt="" className="svg-page" />
+                <img src={loginSVG} alt="" className="svg-page" />
             </div>
         </div>
     )
