@@ -195,6 +195,21 @@ input:focus {
     object-fit: cover;
 }
 
+.blog-item .icon {
+    color: var(--dark);
+    opacity: 90%;
+}
+
+#home .error span {
+    font-size: 12px;
+}
+
+#home .loading div {
+    width: 68px;
+    height: 68px;
+    margin-bottom: 8px;
+}
+
 @media (min-width:768px) {
     .form-box {
         position: relative;
