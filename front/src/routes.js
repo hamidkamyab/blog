@@ -2,9 +2,11 @@
     home: '/',
     login: '/login',
     register: '/register',
-    blog: '/blog',
+    createBlog: '/blog',
     comments: '/comments',
-    singleBlog: "/single-blog/"
+    singleBlog: '/single-blog/',
+    blog: '/my-blog/',
+    edit: '/blog/edit/'
 };
 
 export default routes;

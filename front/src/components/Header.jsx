@@ -63,12 +63,17 @@ function Header() {
                 (
                   <>
                     <li className="nav-item">
-                      <NavLink to={routes.blog} className="nav-link d-flex align-items-center gap-1">
+                      <NavLink to={routes.createBlog} className="nav-link d-flex align-items-center gap-1">
                         <IO5.IoAddCircle size={16} />
                         <span>پست جدید</span>
                       </NavLink>
                     </li>
-
+                    <li className="nav-item">
+                      <NavLink to={routes.blog} className="nav-link d-flex align-items-center gap-1">
+                        <IO5.IoAddCircle size={16} />
+                        <span>پست های من</span>
+                      </NavLink>
+                    </li>
                     <li className="nav-item">
                       <NavLink to={routes.comments} className="nav-link d-flex align-items-center gap-1">
                         <IO5.IoChatboxEllipses size={16} />

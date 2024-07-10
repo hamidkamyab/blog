@@ -8,42 +8,45 @@ import loginSVG from '../../assets/img/login.svg'
 function Login() {
 
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [errors, setErrors] = useState('')    
+    const [errors, setErrors] = useState('')
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoading(true)
         await axios.post('login', {
             email,
             password
         })
             .then(function (response) {
-                if(response.data.status == 200){
-                 
-                  Cookie.set('name', response.data.name, { expires: 1 })
-                  Cookie.set('user_id', response.data.user_id, { expires: 1 })
-                  Cookie.set('token', response.data.token, { expires: 1 })
+                setLoading(false)
+                if (response.data.status == 200) {
+                    Cookie.set('name', response.data.name, { expires: 1 })
+                    Cookie.set('user_id', response.data.user_id, { expires: 1 })
+                    Cookie.set('token', response.data.token, { expires: 1 })
 
-                  window.dispatchEvent(new Event('storage'));
+                    window.dispatchEvent(new Event('storage'));
 
-                  navigate(routes.home)
-                }else if(response.data.status == 401){
-                  Swal.fire({
-                    icon:'warning',
-                    title:response.data.message,
-                    confirmButtonText:'متوجه شدم'
-                })
-                }else{
+                    navigate(routes.home)
+                } else if (response.data.status == 401) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: response.data.message,
+                        confirmButtonText: 'متوجه شدم'
+                    })
+                } else {
                     setErrors(response.data.validation_errors)
                 }
             })
-            .catch(function() {
+            .catch(function () {
+                setLoading(false)
                 Swal.fire({
-                    icon:'error',
-                    title:'عملیات با خطا مواجه شد',
-                    text:'ارتباط با سرور با خطا مواجه شده، لطفا مجددا تلاش کنید.',
-                    confirmButtonText:'متوجه شدم'
+                    icon: 'error',
+                    title: 'عملیات با خطا مواجه شد',
+                    text: 'ارتباط با سرور با خطا مواجه شده، لطفا مجددا تلاش کنید.',
+                    confirmButtonText: 'متوجه شدم'
 
                 })
             });
@@ -67,11 +70,21 @@ function Login() {
                         <div className="form-group">
                             <label htmlFor="exampleInputEmail1" className="form-label">رمز عبور</label>
                             <input type="password" name='password' className='password form-control form-control-sm'
-                              onChange={(e) => setPassword(e.target.value)} />
+                                onChange={(e) => setPassword(e.target.value)} />
                             <small className='form-msg'>{errors.password}</small>
                         </div>
                         <div className="form-group pt-3">
-                            <button className='btn btn-success btn-sm w-100'>ورود به حساب کاربری</button>
+                            <button className='btn btn-success btn-sm w-100 d-flex align-items-center justify-content-center gap-2' disabled={loading}>
+                                {
+                                    !loading ?
+                                        <span>ورود به حساب کاربری</span>
+                                        :
+                                        <>
+                                            <span className="spinner-grow spinner-grow-sm" aria-hidden="true"></span>
+                                            <span role="status">لطفا صبر کنید...</span>
+                                        </>
+                                }
+                            </button>
                         </div>
                     </form>
                 </div>

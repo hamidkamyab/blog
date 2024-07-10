@@ -7,6 +7,8 @@ import Cookie from 'js-cookie';
 import registerSVG from '../../assets/img/register.svg'
 function Register() {
     const Navigate = useNavigate();
+    const [loading, setLoading] = useState(false)
+
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -14,33 +16,35 @@ function Register() {
     const [passPlaceholder, setpassPlaceholder] = useState("حداقل 8 کاراکتر(حروف،عدد و کاراکتر خاص)");
     const [passwordClass, setPasswordClass] = useState('');
     const handleBlurPassword = (e) => {
-        e.target.value?
+        e.target.value ?
             setPasswordClass('pass-ltr')
-        :
+            :
             setPasswordClass('')
-            setpassPlaceholder('حداقل 8 کاراکتر(حروف،عدد و کاراکتر خاص)')
-        ;
+        setpassPlaceholder('حداقل 8 کاراکتر(حروف،عدد و کاراکتر خاص)')
+            ;
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoading(true)
         await axios.post('register', {
             name,
             email,
             password
         })
             .then(function (response) {
-                if(response.data.status == 200){
+                setLoading(false)
+                if (response.data.status == 200) {
                     Swal.fire({
-                        icon:'success',
-                        title:`${response.data.name} عزیز ثبت نام شما با موفقیت انجام شد`,
-                        confirmButtonText:'متوجه شدم',
-                        confirmButtonColor:'#8c7ae6',
+                        icon: 'success',
+                        title: `${response.data.name} عزیز ثبت نام شما با موفقیت انجام شد`,
+                        confirmButtonText: 'متوجه شدم',
+                        confirmButtonColor: '#8c7ae6',
                         timer: 3000,
                         didOpen: () => {
                             const timer = Swal.getPopup().querySelector("#swal2-html-container");
                             let timerInterval = setInterval(() => {
-                              timer.textContent = `${Math.round(Swal.getTimerLeft()/1000)} ثانیه تا انتقال به پروفایل`;
+                                timer.textContent = `${Math.round(Swal.getTimerLeft() / 1000)} ثانیه تا انتقال به پروفایل`;
                             }, 100);
                         },
                     })
@@ -53,18 +57,19 @@ function Register() {
                     setTimeout(() => {
                         Navigate(routes.home)
                     }, 3500);
-                    
-                }else{
+
+                } else {
                     setErrors(response.data.validation_errors)
                 }
             })
-            .catch(function() {
+            .catch(function () {
+                setLoading(false)
                 Swal.fire({
-                    icon:'error',
-                    title:'عملیات با خطا مواجه شد',
-                    text:'ارتباط با سرور با خطا مواجه شده، لطفا مجددا تلاش کنید.',
-                    confirmButtonText:'متوجه شدم',
-                    confirmButtonColor:'#8c7ae6',
+                    icon: 'error',
+                    title: 'عملیات با خطا مواجه شد',
+                    text: 'ارتباط با سرور با خطا مواجه شده، لطفا مجددا تلاش کنید.',
+                    confirmButtonText: 'متوجه شدم',
+                    confirmButtonColor: '#8c7ae6',
                 })
             });
     }
@@ -95,7 +100,17 @@ function Register() {
                             <small className='form-msg'>{errors.password}</small>
                         </div>
                         <div className="form-group pt-3">
-                            <button className='btn btn-success btn-sm w-100'>ثبت نام</button>
+                            <button className='btn btn-success btn-sm w-100 d-flex align-items-center justify-content-center gap-2' disabled={loading}>
+                                {
+                                    !loading ?
+                                        <span>ایجاد حساب کاربری</span>
+                                        :
+                                        <>
+                                            <span className="spinner-grow spinner-grow-sm" aria-hidden="true"></span>
+                                            <span role="status">لطفا صبر کنید...</span>
+                                        </>
+                                }
+                            </button>
                         </div>
                     </form>
                 </div>

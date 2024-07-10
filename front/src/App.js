@@ -8,8 +8,10 @@ import routes from './routes'
 import Home from './page/home/Home'
 import Login from './page/login/Login'
 import Register from './page/register/Register'
-import Blog from './page/blog/Blog'
-import SingleBlog from './page/single-blog/SingleBlog'
+import CreateBlog from './page/blog/CreateBlog'
+import ShowBlog from './page/blog/ShowBlog'
+import MyBlog from './page/blog/MyBlog'
+import EditBlog from './page/blog/EditBlog'
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
@@ -28,8 +30,10 @@ function App() {
               <Route path={routes.home} element={<Home />} />
               <Route path={routes.login} element={<Login />} />
               <Route path={routes.register} element={<Register />} />
-              <Route path={routes.blog} element={<Blog />} />
-              <Route path={routes.singleBlog+':id'} element={<SingleBlog />} />
+              <Route path={routes.createBlog} element={<CreateBlog />} />
+              <Route path={routes.singleBlog+':id'} element={<ShowBlog />} />
+              <Route path={routes.blog} element={<MyBlog />} />
+              <Route path={routes.edit+':id'} element={<EditBlog />} />
             </Routes>
           </div>
         </div>

@@ -21,7 +21,11 @@ class BlogController extends Controller
     }
 
     public function userId($user_id){
-        return Blog::with('user')->where("user_id", 'like', '%'.$user_id.'%')->get();
+        $blog = Blog::with('user')->where("user_id", 'like', '%'.$user_id.'%')->get();
+        return response()->json([
+            'status'=>200,
+            'blog'=>$blog,
+        ]);
     }
 
     public function store(Request $request){
@@ -111,7 +115,7 @@ class BlogController extends Controller
             ]);
             return response()->json([
                 'status'=>200,
-                'message'=>'پست با موفقیت افزوده شد',
+                'message'=>'پست با موفقیت ویرایش شد',
             ]);
 
         }

@@ -10,6 +10,7 @@
     --light: #f5f6fa;
     --silver: #dcdde1;
     --silver-2: #cacaca;
+    --silver-3: #e4e4e4;
     --dark: #2f3640;
     --grey: #718093;
     --yellow: #fbc531;
@@ -137,18 +138,22 @@ input:focus {
     font-size: 18px;
 }
 
-#blog textarea {
+#blog textarea,
+#edit-blog textarea {
     min-height: 200px;
     max-height: 320px;
 }
 
-#home .home-header h4 {
+#home .home-header h4,
+#myBlog .header h4 {
     color: var(--dark-green);
     position: relative;
 }
 
 #home .home-header h4::after,
-#home .home-header h4::before {
+#home .home-header h4::before,
+#myBlog .header h4::after,
+#myBlog .header h4::before {
     content: '';
     width: 64px;
     height: 2px;
@@ -157,16 +162,22 @@ input:focus {
     position: absolute;
 }
 
-#home .home-header h4::after {
+#home .home-header h4::after,
+#myBlog .header h4::after {
     right: -76px;
     top: 50%;
     transform: translateY(-50%);
 }
 
-#home .home-header h4::before {
+#home .home-header h4::before,
+#myBlog .header h4::before {
     left: -76px;
     top: 50%;
     transform: translateY(-50%);
+}
+
+#myBlog .details .btn {
+    padding: 3px 6px;
 }
 
 .blog-item .blog-box {
@@ -227,10 +238,46 @@ input:focus {
     font-size: 18px;
 }
 
+#single-blog .description {
+    min-height: 200px !important;
+}
+
 #single-blog .description p {
     text-align: justify;
     font-size: 14px;
     line-height: 28px;
+}
+
+#single-blog .comments {
+    background-color: var(--silver-3);
+}
+
+#single-blog .comments textarea {
+    outline: none;
+    border: none;
+    font-size: 14px;
+    box-shadow: 0 0 3px 1px var(--silver-2);
+    resize: none;
+    border-radius: 3px;
+    transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out;
+}
+
+#single-blog .comments textarea:focus {
+    box-shadow: 0 0 3px 1px var(--dark-green);
+    transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out;
+}
+
+#edit-blog .loading {
+    position: absolute;
+    z-index: 15;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background-color: rgba(33, 37, 41, 0.9);
 }
 
 @media (min-width:768px) {
