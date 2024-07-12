@@ -37,7 +37,7 @@ function Home() {
 
   return (
     <div id="home" className='align-self-start'>
-      <div className="home-header d-flex flex-column align-items-center gap-3">
+      <div className="page-header d-flex flex-column align-items-center gap-3">
         <img src={homeSVG} alt="" />
         <h4 className='text-center'>از همه جا با ما باش</h4>
       </div>

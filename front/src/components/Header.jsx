@@ -58,6 +58,13 @@ function Header() {
               </NavLink>
             </li>
 
+            <li className="nav-item">
+              <NavLink to={routes.search} className="nav-link d-flex align-items-center gap-1">
+                <IO5.IoSearch size={16} />
+                <span>جستجو</span>
+              </NavLink>
+            </li>
+
             {
               token ?
                 (
@@ -72,12 +79,6 @@ function Header() {
                       <NavLink to={routes.blog} className="nav-link d-flex align-items-center gap-1">
                         <IO5.IoAddCircle size={16} />
                         <span>پست های من</span>
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink to={routes.comments} className="nav-link d-flex align-items-center gap-1">
-                        <IO5.IoChatboxEllipses size={16} />
-                        <span >دیدگاه ها</span>
                       </NavLink>
                     </li>
                     <li className="nav-item" onClick={handleExit}>

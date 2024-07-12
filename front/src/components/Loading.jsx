@@ -3,7 +3,6 @@
 function Loading({w,h}) {
     const [width, setWidth] = useState(24);
     const [height, setHeight] = useState(24);
-    console.log(w,h);
     const handleSize = ()=>{
         if(w && h){
             setWidth(w)

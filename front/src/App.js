@@ -12,6 +12,7 @@ import CreateBlog from './page/blog/CreateBlog'
 import ShowBlog from './page/blog/ShowBlog'
 import MyBlog from './page/blog/MyBlog'
 import EditBlog from './page/blog/EditBlog'
+import Search from './page/search/Search'
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
@@ -34,6 +35,7 @@ function App() {
               <Route path={routes.singleBlog+':id'} element={<ShowBlog />} />
               <Route path={routes.blog} element={<MyBlog />} />
               <Route path={routes.edit+':id'} element={<EditBlog />} />
+              <Route path={routes.search} element={<Search />} />
             </Routes>
           </div>
         </div>

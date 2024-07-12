@@ -77,7 +77,7 @@ function MyBlog() {
 
   return (
     <div id="myBlog" className='align-self-start pt-3'>
-      <div className="header d-flex flex-column align-items-center gap-3 pt-2">
+      <div className="page-header  d-flex flex-column align-items-center gap-3 pt-2">
         <h4 className='text-center'>پست های ارسالی شما</h4>
       </div>
 
