@@ -4,14 +4,13 @@ import * as IO5 from 'react-icons/io5'
 import * as FI from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
 import { ad_to_jalali } from '../../helper';
-import Cookie from 'js-cookie';
+import Comments from '../../components/Comments';
+import Loading from '../../components/Loading';
 
 function SingleBlog() {
   const [isLoadingBlog, setIsLoadingBlog] = useState(true);
-  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false);
   const [blog, setBlog] = useState(null)
-  const [token, setToken] = useState(null)
 
   const { id } = useParams();
   const getBlog = async () => {
@@ -31,7 +30,6 @@ function SingleBlog() {
 
   useEffect(() => {
     return () => {
-      setToken(Cookie.get('token'))
       getBlog()
     };
   }, []);
@@ -77,40 +75,11 @@ function SingleBlog() {
                 </div>
               </div>
               <div className="comments w-100 p-3">
-                {
-                  token &&
-                  <div className="send-comment border-top border-1 py-2">
-                    <div className="col-12 form-group">
-                      <label htmlFor="descriptionInput" className='form-label col-form-label-sm text-muted'>متن دیدگاه</label>
-                      <textarea name="description" className='form-control' id="descriptionInput" rows="10" placeholder='دیدگاه خود را راجب این پست بنویسید....'></textarea>
-                    </div>
-                    <div className="col-12 mt-3 d-flex justify-content-end">
-                      <button className='btn btn-success btn-sm d-flex align-items-center justify-content-center gap-2' disabled={loading}>
-                        {
-                          !loading ?
-                            <span>ثبت دیدگاه</span>
-                            :
-                            <>
-                              <span className="spinner-grow spinner-grow-sm" aria-hidden="true"></span>
-                              <span role="status">لطفا صبر کنید...</span>
-                            </>
-                        }
-                      </button>
-                    </div>
-                  </div>
-                }
-                <div className="comments-list">
-
-                  <h6 className='w-100 text-center my-1 p-0 text-muted'>دیدگاهی برای این بلاگ ثبت نشده است</h6>
-                </div>
+                <Comments />
               </div>
             </div>
           :
-          <div className="loading d-flex flex-column w-100 gap-2 align-items-center py-4">
-            <div className="spinner-grow text-primary" role="status">
-            </div>
-            <span>در حال دریافت اطلاعات، لطفا منتظر بمانید</span>
-          </div>
+          <Loading w={64} h={64} />
       }
 
     </div>

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import routes from '../../routes';
 import homeSVG from '../../assets/img/home.svg'
 import { ad_to_jalali } from '../../helper';
+import Loading from '../../components/Loading';
 
 function Home() {
   const [blogs, setBlogs] = useState([])
@@ -107,11 +108,7 @@ function Home() {
 
               ))
             :
-            <div className="loading d-flex flex-column w-100 gap-2 align-items-center py-4">
-              <div className="spinner-grow text-primary" role="status">
-              </div>
-              <span>در حال دریافت اطلاعات، لطفا منتظر بمانید</span>
-            </div>
+            <Loading w={64} h={64} />
 
 
         }

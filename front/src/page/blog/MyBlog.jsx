@@ -8,6 +8,7 @@ import routes from '../../routes';
 import { ad_to_jalali } from '../../helper';
 import Cookie from 'js-cookie';
 import Swal from 'sweetalert2';
+import Loading from '../../components/Loading';
 
 function MyBlog() {
   const [blogs, setBlogs] = useState([])
@@ -146,11 +147,7 @@ function MyBlog() {
 
               ))
             :
-            <div className="loading d-flex flex-column w-100 gap-2 align-items-center py-4">
-              <div className="spinner-grow text-primary" role="status">
-              </div>
-              <span>در حال دریافت اطلاعات، لطفا منتظر بمانید</span>
-            </div>
+            <Loading w={64} h={64} />
 
 
         }

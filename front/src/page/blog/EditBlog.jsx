@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import Loading from '../../components/Loading'
 function EditBlog() {
     const [loading, setLoading] = useState(false)
     const [isLoadingBlog, setIsLoadingBlog] = useState(true);
@@ -95,11 +96,7 @@ function EditBlog() {
 
                 {
                     isLoadingBlog &&
-                        <div className="loading d-flex flex-column w-100 gap-2 align-items-center justify-content-center py-4">
-                            <div className="spinner-grow text-primary" role="status">
-                            </div>
-                            <span className='text-white'>در حال دریافت اطلاعات، لطفا منتظر بمانید</span>
-                        </div>
+                    <Loading w={48} h={48} />
                 }
 
                 <form onSubmit={handleSubmit} className='d-flex flex-column gap-2'>

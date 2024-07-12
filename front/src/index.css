@@ -10,7 +10,7 @@
     --light: #f5f6fa;
     --silver: #dcdde1;
     --silver-2: #cacaca;
-    --silver-3: #e4e4e4;
+    --silver-3: #f1eeee;
     --dark: #2f3640;
     --grey: #718093;
     --yellow: #fbc531;
@@ -26,6 +26,10 @@ body {
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
+}
+
+.loading div {
+    margin-bottom: 8px;
 }
 
 #header {
@@ -215,12 +219,6 @@ input:focus {
     font-size: 12px;
 }
 
-#home .loading div {
-    width: 68px;
-    height: 68px;
-    margin-bottom: 8px;
-}
-
 #single-blog .blogBox {
     box-shadow: 0 0 8px 2px var(--silver-2);
     border-radius: 4px;
@@ -271,13 +269,36 @@ input:focus {
     -webkit-transition: 0.3s ease-in-out;
 }
 
+#single-blog .comments .comments-list {
+    border-top: 1px solid var(--silver-2);
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+#single-blog .comments .send-comment small {
+    font-size: 12px;
+}
+
+#single-blog .comments .comments-list .top,
+#single-blog .comments .comments-list .comment-name {
+    font-size: 12px;
+    color: var(--grey);
+}
+
+#single-blog .comments .comments-list .body p {
+    font-size: 14px;
+    text-align: justify;
+}
+
 #edit-blog .loading {
     position: absolute;
     z-index: 15;
     height: 100%;
     top: 0;
     right: 0;
+    padding-top: 64px !important;
     background-color: rgba(33, 37, 41, 0.9);
+    color: var(--light)
 }
 
 @media (min-width:768px) {
