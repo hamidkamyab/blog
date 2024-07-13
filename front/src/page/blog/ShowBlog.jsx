@@ -51,7 +51,7 @@ function SingleBlog() {
             :
             <div className="blogBox my-2 border border-1 d-flex flex-wrap justify-content-center col-8">
               <div className="top w-100">
-                <div className="imageBlog">
+                <div className="imageBlog imgLoading">
                   <img src={`http://127.0.0.1:8000/uploads/blog/${blog.image}`} alt="" />
                 </div>
               </div>
