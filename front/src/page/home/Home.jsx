@@ -3,22 +3,30 @@ import React, { useEffect, useState } from 'react'
 import * as IO5 from 'react-icons/io5'
 import * as FI from "react-icons/fi";
 import homeSVG from '../../assets/img/home.svg'
-import Loading from '../../components/Loading';
 import BlogItem from '../../components/BlogItem';
+import Skeleton from '../../components/Skeleton';
 
 function Home() {
   const [blogs, setBlogs] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
 
+  const [currentPage, setCurrentPage] = useState(0)
+  const [lastPage, setLastPage] = useState(0)
+  const [total, setTotal] = useState(0)
+  console.log(blogs)
   const getBlogs = async () => {
     setIsLoading(true)
-    await axios.get('view-blog')
+    let page = currentPage + 1;
+    await axios.get(`view-blog?page=${page}`)
       .then((response) => {
         setIsLoading(false)
         setError(false)
         if (response.data.status == 200) {
-          setBlogs(response.data.blog)
+          setBlogs([...blogs, ...response.data.blog.data])
+          setCurrentPage(response.data.blog.current_page)
+          setLastPage(response.data.blog.last_page)
+          setTotal(response.data.blog.total)
         }
       })
       .catch(() => {
@@ -41,6 +49,17 @@ function Home() {
       </div>
 
       <div className="container d-flex flex-wrap">
+
+
+
+        {
+          blogs.length > 0 ?
+            blogs.map((blog, index) => (
+              <BlogItem data={blog} key={index} />
+            ))
+            :
+            <></>
+        }
         {
           !isLoading ?
             error ?
@@ -54,65 +73,17 @@ function Home() {
                   <span className='ms-1'>تلاش مجدد</span>
                 </button>
               </div>
-              :
-              blogs.map((blog, index) => (
-                <BlogItem data={blog} key={index} />
-                // <div className="blog-item col-4 p-3 d-flex" key={index}>
-                //   <div className="blog-box border border-1 d-flex flex-wrap align-items-start justify-content-center">
-                //     <div className="top w-100">
-                //       <div className="imageBlog imgLoading">
-                //         <div className="fakeLoading"></div>
-                //         <img src={`http://127.0.0.1:8000/uploads/blog/${blog.image}`} alt="" />
-                //       </div>
-                //       <div className="contentBlog p-2">
-                //         {
-                //           blog.title.length > 38 ?
-                //             <h6 className='blog-title'>{blog.title.substring(0, 38) + '...'}</h6>
-                //             :
-                //             <h6 className='blog-title'>{blog.title}</h6>
-                //         }
-                //         {
-                //           blog.description.length > 92 ?
-                //             <p className='blog-description p-0 m-0'>{blog.description.substring(0, 92) + '...'}</p>
-                //             :
-                //             <p className='blog-description p-0 m-0'>{blog.description}</p>
-                //         }
-                //       </div>
-                //     </div>
-                //     <div className="bottom align-self-end p-2 w-100">
-                //       <hr className='my-1' />
-                //       <div className="details d-flex justify-content-between align-items-center mb-3">
-                //         <div className="author">
-                //           <div className='d-flex align-items-center gap-1'>
-                //             <IO5.IoPerson size={12} className='icon' />
-                //             <small>نویسنده:</small>
-                //             <small className='text-muted'>{blog.user.name}</small>
-                //           </div>
-                //         </div>
-                //         <div className="date">
-                //           <div className='d-flex align-items-center gap-1'>
-                //             <IO5.IoCalendar size={12} className='icon' />
-                //             <small>تاریخ:</small>
-                //             <small className='text-muted' title={ad_to_jalali(true, blog.created_at)}>{ad_to_jalali( blog.created_at)}</small>
-                //           </div>
-                //         </div>
-                //       </div>
-                //       <Link to={routes.singleBlog + blog.id} className='btn btn-dark btn-sm w-100'>
-                //         <IO5.IoEye />
-                //         <span className='mx-1'>مشــاهـده</span>
-                //       </Link>
-                //     </div>
-                //   </div>
-                // </div>
-
-              ))
             :
-            <Loading w={64} h={64} />
-
-
+            <></>
+          :
+            <Skeleton h={376} num={3} customClass={'col-4 p-3'} />
         }
 
-
+        <div className="p-3 w-100">
+        <button className="btn btn-dark w-100 py-2" onClick={getBlogs} disabled={currentPage == lastPage || isLoading?true:false}>
+          نمایش بیشتر
+        </button>
+        </div>
       </div>
 
     </div>

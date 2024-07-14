@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Validator;
 class BlogController extends Controller
 {
     public function index(){
-        $blog = Blog::with('user')->orderBy('id', 'desc')->get();
+        $blog = Blog::with('user')->orderBy('id', 'desc')->paginate(3);
 
         return response()->json([
             'status'=>200,
-            'blog'=>$blog,
+            'blog'=>$blog
         ]);
     }
 

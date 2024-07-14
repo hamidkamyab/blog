@@ -54,6 +54,51 @@ body {
     animation: loading 0.7s infinite;
 }
 
+.skeleton-wrapper {
+    box-shadow: 0 0 3px 1px var(--silver-2);
+}
+
+.skeleton.image {
+    background-color: var(--silver-3);
+    width: 100%;
+    height: 65%;
+}
+
+.skeleton.title {
+    background-color: var(--silver-3);
+    width: 100%;
+    height: 5%;
+}
+
+.skeleton.description {
+    background-color: var(--silver-3);
+    width: 100%;
+    height: 15%;
+}
+
+.skeleton.details {
+    background-color: var(--silver-3);
+    width: 100%;
+    height: 15%;
+}
+
+.shimmer-wrapper {
+    overflow: hidden;
+}
+
+.shimmer {
+    display: block;
+    height: 110%;
+    width: 25%;
+    background-color: #fff;
+    right: -15%;
+    top: -5%;
+    position: absolute;
+    rotate: 10deg;
+    filter: blur(10px);
+    animation: loading 0.7s infinite;
+}
+
 @keyframes loading {
     from {
         right: -15%;
