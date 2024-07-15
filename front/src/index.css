@@ -28,6 +28,11 @@ body {
     box-sizing: border-box;
 }
 
+#notFound .imgBox img {
+    width: 75%;
+    object-fit: cover;
+}
+
 .imgLoading {
     position: relative;
     overflow: hidden;
@@ -45,7 +50,7 @@ body {
     display: block;
     height: 110%;
     width: 20%;
-    background-color: #fff;
+    background-color: rgba(252, 252, 252, 0.6);
     right: -15%;
     top: -5%;
     position: absolute;
@@ -90,7 +95,7 @@ body {
     display: block;
     height: 110%;
     width: 25%;
-    background-color: #fff;
+    background-color: rgba(252, 252, 252, 0.6);
     right: -15%;
     top: -5%;
     position: absolute;

@@ -4,8 +4,6 @@ import Shimmer from './Shimmer';
 
 function Skeleton({ h, num = 1, customClass }) {
     const [count, setCount] = useState([]);
-    console.log(count)
-
     useEffect(() => {
         return () => {
             const newCount = [];
@@ -17,7 +15,7 @@ function Skeleton({ h, num = 1, customClass }) {
     }, [num]);
     return (
         count.map((val, index) => (
-            <div className={customClass}>
+            <div className={customClass} key={index}>
                 <div className='skeleton-wrapper position-relative p-1' style={{ height: `${h}px` }} key={index}>
                     <div className="skeleton-box h-100 d-flex flex-column justify-content-between gap-2">
                         <SkeletonElement type={'image'} />

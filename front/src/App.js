@@ -13,6 +13,9 @@ import ShowBlog from './page/blog/ShowBlog'
 import MyBlog from './page/blog/MyBlog'
 import EditBlog from './page/blog/EditBlog'
 import Search from './page/search/Search'
+import AuthRoute from './components/auth/AuthRoute'
+import ProtectedRoute from './components/auth/ProtectedRoute'
+import NotFound from './page/404/NotFound'
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
@@ -29,13 +32,22 @@ function App() {
           <div className="main w-100">
             <Routes>
               <Route path={routes.home} element={<Home />} />
-              <Route path={routes.login} element={<Login />} />
-              <Route path={routes.register} element={<Register />} />
-              <Route path={routes.createBlog} element={<CreateBlog />} />
-              <Route path={routes.singleBlog+':id'} element={<ShowBlog />} />
-              <Route path={routes.blog} element={<MyBlog />} />
-              <Route path={routes.edit+':id'} element={<EditBlog />} />
+
+              <Route element={<AuthRoute />}>
+                <Route path={routes.login} element={<Login />} />
+                <Route path={routes.register} element={<Register />} />
+              </Route>
+
+              <Route path={routes.singleBlog + ':id'} element={<ShowBlog />} />
               <Route path={routes.search} element={<Search />} />
+
+              <Route element={<ProtectedRoute />} >
+                <Route path={routes.createBlog} element={<CreateBlog />} />
+                <Route path={routes.blog} element={<MyBlog />} />
+                <Route path={routes.edit + ':id'} element={<EditBlog />} />
+              </Route>
+
+              <Route path='*' element={<NotFound />} />
             </Routes>
           </div>
         </div>

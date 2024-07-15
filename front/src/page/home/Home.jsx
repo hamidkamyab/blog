@@ -14,7 +14,7 @@ function Home() {
   const [currentPage, setCurrentPage] = useState(0)
   const [lastPage, setLastPage] = useState(0)
   const [total, setTotal] = useState(0)
-  console.log(blogs)
+
   const getBlogs = async () => {
     setIsLoading(true)
     let page = currentPage + 1;
